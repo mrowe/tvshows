@@ -24,7 +24,7 @@ module TVShows
 
     def save
       File.open(@filename, "w") do |file|
-        file.write(JSON.generate(@shows.map(&:serialize)))
+        file.write(JSON.pretty_generate(@shows.map(&:serialize)))
       end
     end
 
