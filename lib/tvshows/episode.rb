@@ -1,6 +1,14 @@
-class Episode < Struct.new(:season, :number, :seeds, :leeches, :url)
+class Episode < Struct.new(:season, :number, :url, :seeds, :leeches)
 
   include Comparable
+
+  def self.deserialize(attributes)
+    new(attributes[:season], attributes[:number], attributes[:url])
+  end
+
+  def serialize
+    { season: season, number: number, url: url }
+  end
 
   def <=>(other)
     if season > other.season
@@ -28,6 +36,6 @@ class Episode < Struct.new(:season, :number, :seeds, :leeches, :url)
     end
   end
 
-  NEVER = new(0, 0, 0, 0, nil)
+  NEVER = new(0, 0, nil, 0, 0)
 
 end

@@ -1,3 +1,6 @@
+require 'json'
+require_relative 'show'
+
 class Database
 
   def self.open(filename = File.expand_path("../../../db/tvshows.json", __FILE__))
@@ -9,21 +12,22 @@ class Database
 
   def initialize(filename)
     @filename = filename
-    @shows = []
   end
 
   def load
-    # TODO
+    @shows = (JSON.parse(File.read(@filename), :symbolize_names => true) || []).map do |attributes|
+      Show.deserialize(attributes)
+    end
   end
 
   def save
     File.open(@filename, "w") do |file|
-      # TODO
+      file.write(JSON.generate(@shows.map(&:serialize)))
     end
   end
 
-  def add(name)
-    @shows << Show.new(name, [])
+  def add(show)
+    @shows << show
   end
 
   def delete(name)

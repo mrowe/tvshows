@@ -1,7 +1,16 @@
 require 'nokogiri'
 require 'open-uri'
+require_relative 'episode'
 
 class Show < Struct.new(:name, :episodes)
+
+  def self.deserialize(attributes)
+    new(attributes[:name], attributes[:episodes].map { |attributes| Episode.deserialize(attributes) })
+  end
+
+  def serialize
+    { name: name, episodes: episodes.map(&:serialize) }
+  end
 
   def update(download_directory)
     puts "Updating #{name}..."
@@ -38,7 +47,7 @@ class Show < Struct.new(:name, :episodes)
       seeds = $3.to_i
       leeches = $4.to_i
 
-      episodes << Episode.new(season, number, seeds, leeches, url)
+      episodes << Episode.new(season, number, url, seeds, leeches)
     end
   end
 
