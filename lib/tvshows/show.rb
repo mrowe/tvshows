@@ -1,19 +1,23 @@
 require 'nokogiri'
 require 'open-uri'
 
-class Show < Struct.new(:name, :last_torrent)
+class Show < Struct.new(:name, :torrents)
 
   def update(download_directory)
     puts "Updating #{name}..."
     new_torrents.sort_by(&:sequence).each do |torrent|
       torrent.download_to("#{download_directory}/#{name}")
-      self.last_torrent = torrent
+      torrents << torrent
     end
+  end
+
+  def most_recent_torrent
+    torrents.last
   end
 
   def new_torrents
     all_torrents
-      .reject { |torrent| torrent <= last_torrent }
+      .reject { |torrent| torrent <= most_recent_torrent }
       .group_by(&:sequence)
       .map { |sequence, torrents| torrents.sort_by(&:priority).first }
   end
