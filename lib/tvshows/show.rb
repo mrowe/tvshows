@@ -48,6 +48,8 @@ module TVShows
         seeds = $3.to_i
         leeches = $4.to_i
 
+        puts title
+
         episodes << Episode.new(season, number, url, seeds, leeches)
       end.group_by(&:sequence)
         .map { |sequence, episodes| episodes.sort_by(&:priority).first }
