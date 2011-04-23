@@ -1,4 +1,4 @@
-class Torrent < Struct.new(:season, :episode, :seeds, :leeches, :url)
+class Episode < Struct.new(:season, :number, :seeds, :leeches, :url)
 
   include Comparable
 
@@ -8,12 +8,12 @@ class Torrent < Struct.new(:season, :episode, :seeds, :leeches, :url)
     elsif season < other.season
       -1
     else
-      episode <=> other.episode
+      number <=> other.number
     end
   end
 
   def sequence
-    [season, episode]
+    [season, number]
   end
 
   def priority
@@ -21,11 +21,13 @@ class Torrent < Struct.new(:season, :episode, :seeds, :leeches, :url)
   end
 
   def download_to(base_filename)
-    filename = "#{base_filename}.S#{season}E#{episode}.torrent"
+    filename = "#{base_filename}.S#{season}E#{number}.torrent"
     puts "  Downloading #{url} to #{filename}"
-    File.open("#{filename}", "w") do |file|
+    File.open(filename, "w") do |file|
       file.write(open(url))
     end
   end
+
+  NEVER = new(0, 0, 0, 0, nil)
 
 end
