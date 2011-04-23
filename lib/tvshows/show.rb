@@ -33,8 +33,7 @@ module TVShows
     def new_episodes
       recent_episodes
         .reject { |episode| episode <= most_recent_episode }
-        .group_by(&:sequence)
-        .map { |sequence, episodes| episodes.sort_by(&:priority).first }
+        .tap { |episodes| puts "  Found #{episodes.size} NEW episodes" }
     end
 
     def recent_episodes
@@ -42,7 +41,7 @@ module TVShows
         next episodes unless url = item.css("enclosure").attr("url").value
 
         title = item.css("title").text
-        next episodes unless title =~ /#{name}\.S(\d+)E(\d+)\.HDTV\.XviD-LOL(?:.*?)\s+\[(\d+)\/(\d+)\]/
+        next episodes unless title =~ /#{name}\.S(\d+)E(\d+)(?:\.\S+)?\.HDTV\.XviD(?:\S*)\s+\[(\d+)\/(\d+)\]/
 
         season = $1.to_i
         number = $2.to_i
@@ -50,7 +49,9 @@ module TVShows
         leeches = $4.to_i
 
         episodes << Episode.new(season, number, url, seeds, leeches)
-      end
+      end.group_by(&:sequence)
+        .map { |sequence, episodes| episodes.sort_by(&:priority).first }
+        .tap { |episodes| puts "  Found #{episodes.size} RECENT episodes" }
     end
 
     def rss_feed
