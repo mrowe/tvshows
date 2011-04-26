@@ -17,18 +17,24 @@ module TVShows
     end
 
     def load
-      @shows = parsed.map do |attributes|
-        Show.deserialize(attributes)
-      end
+      puts "Loading database"
+      @shows = parsed.map { |attributes| Show.deserialize(attributes) }
     end
 
     def save
-      File.open(@filename, "w") do |file|
-        file.write(formatted)
-      end
+      puts "Saving database"
+      File.open(@filename, "w") { |file| file.write(formatted) }
     end
 
-    def each_show(&block)
+    def clear
+      @shows = []
+    end
+
+    def add(show)
+      @shows << show
+    end
+
+    def each(&block)
       @shows.each(&block)
     end
 

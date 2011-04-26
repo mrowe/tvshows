@@ -1,3 +1,100 @@
 [
-
+  {
+    "name": "Boardwalk Empire",
+    "last_downloaded_episode": {
+      "season": 1,
+      "number": 6
+    }
+  },
+  {
+    "name": "Castle 2009",
+    "last_downloaded_episode": {
+      "season": 3,
+      "number": 21
+    }
+  },
+  {
+    "name": "House",
+    "last_downloaded_episode": {
+      "season": 7,
+      "number": 19
+    }
+  },
+  {
+    "name": "Justified",
+    "last_downloaded_episode": {
+      "season": 2,
+      "number": 11
+    }
+  },
+  {
+    "name": "Misfits",
+    "last_downloaded_episode": {
+      "season": 2,
+      "number": 7
+    }
+  },
+  {
+    "name": "Modern Family",
+    "last_downloaded_episode": {
+      "season": 2,
+      "number": 20
+    }
+  },
+  {
+    "name": "NCIS",
+    "last_downloaded_episode": {
+      "season": 8,
+      "number": 21
+    }
+  },
+  {
+    "name": "Rules of Engagement",
+    "last_downloaded_episode": {
+      "season": 8,
+      "number": 20
+    }
+  },
+  {
+    "name": "Sherlock",
+    "last_downloaded_episode": {
+      "season": 1,
+      "number": 2
+    }
+  },
+  {
+    "name": "Spooks",
+    "last_downloaded_episode": {
+      "season": 9,
+      "number": 7
+    }
+  },
+  {
+    "name": "The Big Bang Theory",
+    "last_downloaded_episode": {
+      "season": 4,
+      "number": 20
+    }
+  },
+  {
+    "name": "The Good Wife",
+    "last_downloaded_episode": {
+      "season": 2,
+      "number": 20
+    }
+  },
+  {
+    "name": "Treme",
+    "last_downloaded_episode": {
+      "season": 1,
+      "number": 10
+    }
+  },
+  {
+    "name": "United States of Tara",
+    "last_downloaded_episode": {
+      "season": 3,
+      "number": 4
+    }
+  }
 ]

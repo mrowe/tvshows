@@ -1,21 +1,13 @@
 require 'open-uri'
-require_relative 'isohunt'
 
 module TVShows
 
   class Torrent
 
-    def self.deserialize(show, attributes)
-      new(attributes[:name], attributes[:season], attributes[:episode], attributes[:url])
-    end
+    attr_reader :episode
 
-    def serialize
-      {name: @name, season: @season, episode: @episode, url: @url}
-    end
-
-    def initialize(name, season, episode, url = nil, seeds = 0, leeches = 0)
+    def initialize(name, episode, url, seeds, leeches)
       @name = name
-      @season = season
       @episode = episode
       @url = url
       @seeds = seeds
@@ -23,18 +15,15 @@ module TVShows
     end
 
     def filename
-      "#{@name}.S#{sprintf('%02d', @season)}E#{sprintf('%02d', @episode)}.torrent"
+      "#{@name}.#{@episode}.torrent"
     end
 
     def priority
       [-@seeds, @leeches]
     end
 
-    def next
-      ISOHunt.find(@name, @season, @episode.next) || ISOHunt.find(@name, @season.next, 1)
-    end
-
     def download_to(directory)
+      puts "Downloading #{@url} to #{File.join(directory, filename)}"
       File.open(File.join(directory, filename), "w") do |file|
         file.write(open(@url))
       end

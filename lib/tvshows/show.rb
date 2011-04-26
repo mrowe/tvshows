@@ -1,26 +1,27 @@
-require_relative 'torrent'
+require_relative 'episode'
+require_relative 'isohunt'
 
 module TVShows
 
   class Show
 
     def self.deserialize(attributes)
-      new(attributes[:name], attributes[:last_downloaded_torrent])
+      new(attributes[:name], attributes[:last_downloaded_episode])
     end
 
     def serialize
-      { name: @name, last_downloaded_torrent: @last_downloaded_torrent.serialize }
+      { name: @name, last_downloaded_episode: @last_downloaded_episode.serialize }
     end
 
-    def initialize(name, last_downloaded_torrent = Torrent.new(name, 0, 0))
+    def initialize(name, last_downloaded_episode = Episode::NONE)
       @name = name
-      @last_downloaded_torrent = last_downloaded_torrent
+      @last_downloaded_episode = last_downloaded_episode
     end
 
     def download_to(directory)
-      if next_torrent = @last_downloaded_torrent.next
-        next_torrent.download_to(directory)
-        @last_downloaded_torrent = next_torrent
+      if torrent = @last_downloaded_episode.find_next { |episode|ISOHunt.torrent(@name, episode) }
+        torrent.download_to(directory)
+        @last_downloaded_episode = torrent.episode
       end
     end
 
