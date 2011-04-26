@@ -2,7 +2,7 @@ module TVShows
 
   class Episode
 
-    def self.deserialize(show, attributes)
+    def self.deserialize(attributes)
       new(attributes[:season], attributes[:number])
     end
 

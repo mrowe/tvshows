@@ -6,7 +6,7 @@ module TVShows
   class Show
 
     def self.deserialize(attributes)
-      new(attributes[:name], attributes[:last_downloaded_episode])
+      new(attributes[:name], Episode.deserialize(attributes[:last_downloaded_episode]))
     end
 
     def serialize
