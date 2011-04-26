@@ -17,31 +17,33 @@ module TVShows
     end
 
     def load
-      @shows = (JSON.parse(File.read(@filename), :symbolize_names => true) || []).map do |attributes|
+      @shows = parsed.map do |attributes|
         Show.deserialize(attributes)
       end
     end
 
     def save
       File.open(@filename, "w") do |file|
-        file.write(JSON.pretty_generate(@shows.map(&:serialize)))
+        file.write(formatted)
       end
     end
 
-    def add(show)
-      @shows << show
-    end
-
-    def delete(name)
-      @shows.delete(get(name))
-    end
-
-    def get(name)
-      @shows.find { |show| show.name == name }
-    end
-
-    def each(&block)
+    def each_show(&block)
       @shows.each(&block)
+    end
+
+    private
+
+    def formatted
+      JSON.pretty_generate(@shows.map(&:serialize))
+    end
+
+    def parsed
+      JSON.parse(read, :symbolize_names => true)
+    end
+
+    def read
+      File.exists?(@filename) ? File.read(@filename) : "[]"
     end
 
   end
