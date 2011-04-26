@@ -1,7 +1,7 @@
 Bummed by the demise of TVShows? I just hacked together a supremely quick-n-dirty replacement.
 
 1. Collect underpants
-2. Take a look at db/database.json and add/remove shows as appropriate
+2. Copy db/example.database.json to db/database.json and add/remove shows as necessary
 3. Alternatively, use TVShows::Database to manually add some shows, eg:
 
   require 'lib/tvshows/database'
