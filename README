@@ -1,0 +1,7 @@
+Bummed by the demise of TVShows? I just hacked together a supremely quick-n-dirty replacement.
+
+1. Collect underpants
+2. Take a look at database.json and add/remove tv shows as appropriate
+3. Alternatively, load up the TVShows::Database class and manually add some shows
+4. Periodically run lib/tvshows.rb to download torrents to your ~/Downloads folder
+5. Profit
