@@ -51,7 +51,7 @@
   {
     "name": "Rules of Engagement",
     "last_downloaded_episode": {
-      "season": 8,
+      "season": 5,
       "number": 20
     }
   },
@@ -59,14 +59,14 @@
     "name": "Sherlock",
     "last_downloaded_episode": {
       "season": 1,
-      "number": 2
+      "number": 3
     }
   },
   {
     "name": "Spooks",
     "last_downloaded_episode": {
       "season": 9,
-      "number": 7
+      "number": 8
     }
   },
   {
@@ -86,15 +86,15 @@
   {
     "name": "Treme",
     "last_downloaded_episode": {
-      "season": 1,
-      "number": 10
+      "season": 2,
+      "number": 1
     }
   },
   {
     "name": "United States of Tara",
     "last_downloaded_episode": {
       "season": 3,
-      "number": 4
+      "number": 5
     }
   }
 ]
