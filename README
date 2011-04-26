@@ -3,10 +3,12 @@ Bummed by the demise of TVShows? I just hacked together a supremely quick-n-dirt
 1. Collect underpants
 2. Take a look at db/database.json and add/remove shows as appropriate
 3. Alternatively, use TVShows::Database (lib/tvshows/database) class to manually add some shows, eg:
+
   TVShows::Database.open do |shows|
     shows.clear
     shows.add(TVShows::Show.new("Banana Man"))
     shows.add(TVShows::Shows.new("The Goodies", TVShows::Episode.new(1, 1)))
   end
+
 4. Periodically run lib/tvshows.rb to download torrents to your ~/Downloads folder
 5. Profit
