@@ -19,7 +19,7 @@ module TVShows
     end
 
     def download_to(directory)
-      if torrent = @last_downloaded_episode.find_next { |episode|ISOHunt.torrent(@name, episode) }
+      while torrent = @last_downloaded_episode.find_next { |episode|ISOHunt.torrent(@name, episode) }
         torrent.download_to(directory)
         @last_downloaded_episode = torrent.episode
       end
