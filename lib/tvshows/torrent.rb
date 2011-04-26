@@ -6,10 +6,10 @@ module TVShows
 
     attr_reader :episode
 
-    def initialize(name, episode, url, seeds, leeches)
+    def initialize(name, episode, uri, seeds, leeches)
       @name = name
       @episode = episode
-      @url = url
+      @uri = uri
       @seeds = seeds
       @leeches = leeches
     end
@@ -23,9 +23,9 @@ module TVShows
     end
 
     def download_to(directory)
-      puts "Downloading #{@url} to #{File.join(directory, filename)}"
+      puts "Downloading #{@uri} to #{File.join(directory, filename)}"
       File.open(File.join(directory, filename), "w") do |file|
-        file.write(open(@url))
+        file.write(@uri.read)
       end
     end
 

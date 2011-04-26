@@ -32,7 +32,7 @@ module TVShows
         seeds = $1.to_i
         leeches = $2.to_i
 
-        torrents << Torrent.new(@name, @episode, url, seeds, leeches)
+        torrents << Torrent.new(@name, @episode, URI.parse(url), seeds, leeches)
       end
     end
 
