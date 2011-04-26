@@ -4,7 +4,7 @@ Bummed by the demise of TVShows? I just hacked together a supremely quick-n-dirt
 2. Take a look at db/database.json and add/remove shows as appropriate
 3. Alternatively, use TVShows::Database to manually add some shows, eg:
 
-  require 'lib/tvshows/datavase'
+  require 'lib/tvshows/database'
 
   TVShows::Database.open do |shows|
     shows.clear
