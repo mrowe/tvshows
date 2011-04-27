@@ -12,5 +12,5 @@ Bummed by the demise of TVShows? I just hacked together a supremely quick-n-dirt
     shows.add(TVShows::Show.new("The Goodies", TVShows::Episode.new(1, 1)))
   end
 
-4. Periodically run lib/tvshows.rb to download torrents to your ~/Downloads folder
+4. Periodically run bin/tvshows to download torrents to your ~/Downloads folder
 5. Profit
